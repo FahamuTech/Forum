@@ -1,4 +1,4 @@
-package com.blogspot.waptell.www.forum;
+package com.blogspot.waptell.www.forum.fragment;
 
 
 import android.os.Bundle;
@@ -9,6 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blogspot.waptell.www.forum.R;
+import com.blogspot.waptell.www.forum.adapter.ZanguAdapter;
+import com.blogspot.waptell.www.forum.adapter.ZoteAdapter;
+import com.blogspot.waptell.www.forum.model.PostModal;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,14 +21,13 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Tab1Fragment extends Fragment {
+public class Tab2Fragment extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<PostModal> listItems;
 
-
-    public Tab1Fragment() {
+    public Tab2Fragment() {
         // Required empty public constructor
     }
 
@@ -32,9 +36,9 @@ public class Tab1Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_tab1, container, false);
+        View view = inflater.inflate(R.layout.fragment_tab2, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) view.findViewById(R.id.zote_recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -46,16 +50,20 @@ public class Tab1Fragment extends Fragment {
 
             PostModal postModal = new PostModal(
                     "post title",
+                    "post description","post title",
                     "post description"
             );
             listItems.add(postModal);
         }
 
-        adapter = new MAdapter(listItems, getActivity());
+        adapter = new ZoteAdapter(listItems, getActivity());
         recyclerView.setAdapter(adapter);
+
 
 
         return view;
     }
+
+
 
 }
